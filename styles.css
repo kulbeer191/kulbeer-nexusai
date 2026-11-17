@@ -98,5 +98,7 @@ body.compare-bar-visible{padding-bottom:96px}
 .btn-small{padding:8px 12px;font-size:13.5px;display:inline-block}
 .compare-note{color:var(--muted);font-size:13px;padding:0 22px 16px;margin:0}
 .compare-toast{position:fixed;left:50%;transform:translateX(-50%);bottom:96px;z-index:80;background:#1e293b;border:1px solid #2c3f63;color:#e6edf7;padding:10px 16px;border-radius:999px;font-size:14px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.5);max-width:calc(100vw - 32px);text-align:center}
+/* display:flex on .compare-bar/.compare-modal-overlay beats the UA [hidden]{display:none} rule, so without this the bar and modal can never be hidden */
+.compare-bar[hidden],.compare-modal-overlay[hidden],.compare-toast[hidden]{display:none!important}
 body.compare-modal-open{overflow:hidden}
 @media(max-width:820px){.compare-bar{bottom:10px;gap:8px;padding:10px 12px}.compare-bar-actions{width:100%;justify-content:space-between}.compare-modal{max-height:92vh}.compare-modal-head h2{font-size:17px}.compare-table th{width:96px}}

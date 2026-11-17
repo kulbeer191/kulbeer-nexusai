@@ -228,6 +228,9 @@
 
   function renderBar(){
     if (selected.length === 0) {
+      namesEl.innerHTML = '';
+      nowBtn.textContent = 'Compare Now (0/' + MAX + ')';
+      nowBtn.disabled = true;
       bar.hidden = true;
       document.body.classList.remove('compare-bar-visible');
       return;
@@ -268,7 +271,9 @@
     html += row('Tool', cols.map(function(m){ return '<strong>' + esc(m.name) + '</strong>'; }));
     html += row('Category', cols.map(function(m){ return esc(m.category); }));
     html += row('Pricing model', cols.map(function(m){
-      var free = /free/i.test(m.price);
+      /* "No free plan" must not count as free; a $0 tier is a free plan */
+      var hasFreeWord = /free/i.test(m.price) && !/\bno\b[\s\S]*\bfree\b/i.test(m.price);
+      var free = hasFreeWord || /\$0\b/.test(m.price);
       var badge = free
         ? '<span class="pricing-badge free">Free + Paid</span>'
         : '<span class="pricing-badge paid">Paid only</span>';
