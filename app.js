@@ -331,4 +331,258 @@
   closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+
+  /* Shared with the AI Stack Recommender: add a card to the comparison. */
+  window.NexusAICompare = {
+    add: function(card){
+      if (!card) return false;
+      if (selected.indexOf(card) >= 0) return true;
+      if (selected.length >= MAX) {
+        showToast('You can compare up to 3 tools — remove one to add another.');
+        return false;
+      }
+      selected.push(card);
+      var btn = card.querySelector('.compare-toggle');
+      if (btn) setToggle(card, btn, true);
+      renderBar();
+      return true;
+    }
+  };
+})();
+
+/* ---- Interactive AI Stack Recommender ("Find My Perfect AI") ---- */
+(function(){
+  var openBtn = document.getElementById('recommenderOpen');
+  var modal = document.getElementById('recModal');
+  var body = document.getElementById('recBody');
+  var stepLabel = document.getElementById('recStepLabel');
+  var closeBtn = document.getElementById('recClose');
+  if (!openBtn || !modal || !body || !stepLabel || !closeBtn) return;
+
+  var GOALS = [
+    { key:'chat',   label:'Write & Research',    icon:'✍️', cat:'chat' },
+    { key:'code',   label:'Code & Build Apps',   icon:'💻', cat:'code' },
+    { key:'image',  label:'Generate Images',     icon:'🎨', cat:'image' },
+    { key:'video',  label:'Create & Edit Videos', icon:'🎬', cat:'video' },
+    { key:'voice',  label:'Voice & Audio',       icon:'🎙️', cat:'voice' },
+    { key:'agents', label:'Automate Workflows',  icon:'🤖', cat:'agents' }
+  ];
+  var BUDGETS = [
+    { key:'free',    label:'Free Plan Required',        desc:'Only tools with a free plan' },
+    { key:'under30', label:'Freemium / Under $30/mo',  desc:'Free plan, or a paid entry at $30/mo or less' },
+    { key:'any',     label:'Any / Best Performance',    desc:'The best tool for the job, whatever it costs' }
+  ];
+  /* Editorial top-pick order per category, from the review verdicts.
+     Tools not listed sort after, alphabetically — so new daily-batch tools
+     become candidates automatically, with no code change. */
+  var TOP_PICKS = {
+    chat:   ['chatgpt','claude','grammarly','jasper','quillbot','writer-com','copy-ai','sudowrite'],
+    code:   ['cursor','github-copilot','v0-by-vercel','bolt-new','lovable','replit','devin-desktop','coderabbit'],
+    image:  ['midjourney','leonardo-ai','adobe-firefly'],
+    video:  ['runway','heygen','kling-ai','pika','luma-dream-machine'],
+    agents: ['manus-ai','lindy-ai','zapier-agents','n8n','genspark','perplexity-teammates','skyvern','autogpt'],
+    /* No dedicated voice tools in the directory yet: closest voice-capable
+       tools (meeting transcription & voice cloning) as a fallback pool. */
+    voice:  ['fireflies-ai','otter-ai','heygen']
+  };
+  var state = { goal:null, budget:null };
+
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function slugOf(href){
+    return (href || '').replace(/^tools\//, '').replace(/\.html$/, '');
+  }
+  function minPrice(p){
+    var nums = (p.match(/\$(\d+(?:\.\d+)?)/g) || []).map(function(s){ return parseFloat(s.slice(1)); });
+    return nums.length ? Math.min.apply(null, nums) : Infinity;
+  }
+  function hasFree(p){
+    return (/free/i.test(p) && !/\bno\b[\s\S]*\bfree\b/i.test(p)) || /\$0\b/.test(p);
+  }
+  function cardMeta(card){
+    var h3 = card.querySelector('h3');
+    var tag = card.querySelector('.tag');
+    var desc = card.querySelector('p:not(.price)');
+    var price = card.querySelector('.price');
+    var links = card.querySelectorAll('.actions a');
+    return {
+      name: h3 ? h3.textContent.trim() : '',
+      category: tag ? tag.textContent.trim() : '',
+      desc: desc ? desc.textContent.trim() : '',
+      price: price ? price.textContent.trim() : '',
+      strengths: (card.getAttribute('data-strengths') || '').split(' • ').filter(function(s){ return s.trim(); }),
+      review: links[0] ? links[0].getAttribute('href') : 'index.html',
+      official: links[1] ? links[1].getAttribute('href') : null
+    };
+  }
+  function findCardBySlug(slug){
+    var link = document.querySelector('.tool-card a[href="tools/' + slug + '.html"]');
+    return link ? link.closest('article') : null;
+  }
+  function poolFor(cat){
+    return Array.prototype.slice.call(document.querySelectorAll('.tool-card'))
+      .filter(function(card){
+        if (card.getAttribute('data-category') !== cat) return false;
+        var tag = card.querySelector('.tag');
+        if (tag && /^Comparison/i.test(tag.textContent.trim())) return false;
+        return true;
+      })
+      .map(function(card){ return { card: card, meta: cardMeta(card) }; });
+  }
+  function rank(pool, goalKey){
+    var order = TOP_PICKS[goalKey] || [];
+    return pool.slice().sort(function(a, b){
+      var ia = order.indexOf(slugOf(a.meta.review));
+      var ib = order.indexOf(slugOf(b.meta.review));
+      ia = ia < 0 ? 1000 : ia;
+      ib = ib < 0 ? 1000 : ib;
+      if (ia !== ib) return ia - ib;
+      return a.meta.name.localeCompare(b.meta.name);
+    });
+  }
+  function compute(goalKey, budgetKey){
+    var goal = null;
+    GOALS.forEach(function(g){ if (g.key === goalKey) goal = g; });
+    if (!goal) return { results: [], note: '' };
+    var pool = poolFor(goal.cat);
+    var note = '';
+    if (pool.length === 0 && goal.cat === 'voice') {
+      pool = TOP_PICKS.voice.map(findCardBySlug)
+        .filter(function(c){ return !!c; })
+        .map(function(card){ return { card: card, meta: cardMeta(card) }; });
+      note = 'No dedicated Voice & Audio tools in the directory yet — these are the closest voice-capable tools (meeting transcription & voice cloning).';
+    }
+    var filtered = pool;
+    if (budgetKey === 'free') {
+      filtered = pool.filter(function(x){ return hasFree(x.meta.price); });
+    } else if (budgetKey === 'under30') {
+      filtered = pool.filter(function(x){ return hasFree(x.meta.price) || minPrice(x.meta.price) <= 30; });
+    }
+    if (filtered.length < 3 && pool.length > filtered.length) {
+      var rest = pool.filter(function(x){ return filtered.indexOf(x) < 0; })
+        .sort(function(a, b){ return minPrice(a.meta.price) - minPrice(b.meta.price); });
+      if (filtered.length === 0) {
+        note = (note ? note + ' ' : '') +
+          'No tool in this category matches that budget, so here are the lowest-cost options instead.';
+      } else {
+        note = (note ? note + ' ' : '') +
+          'Only ' + filtered.length + ' in this category match that budget — topped up with the lowest-cost option.';
+      }
+      filtered = filtered.concat(rest);
+    }
+    return { results: rank(filtered, goalKey).slice(0, 3), note: note };
+  }
+
+  function goalLabel(key){
+    var g = null;
+    GOALS.forEach(function(x){ if (x.key === key) g = x; });
+    return g ? g.label : '';
+  }
+  function budgetLabel(key){
+    var b = null;
+    BUDGETS.forEach(function(x){ if (x.key === key) b = x; });
+    return b ? b.label : '';
+  }
+
+  function renderStep1(){
+    stepLabel.textContent = 'Step 1 of 2 — What do you want to achieve?';
+    body.innerHTML = '<div class="rec-options">' + GOALS.map(function(g){
+      return '<button type="button" class="rec-option" data-goal="' + g.key + '">' +
+        '<span class="rec-option-icon" aria-hidden="true">' + g.icon + '</span>' +
+        '<span>' + esc(g.label) + '</span></button>';
+    }).join('') + '</div>';
+    Array.prototype.forEach.call(body.querySelectorAll('[data-goal]'), function(btn){
+      btn.addEventListener('click', function(){
+        state.goal = btn.getAttribute('data-goal');
+        renderStep2();
+      });
+    });
+  }
+
+  function renderStep2(){
+    stepLabel.textContent = 'Step 2 of 2 — What is your budget?';
+    body.innerHTML =
+      '<p class="rec-context">Goal: <strong>' + esc(goalLabel(state.goal)) + '</strong> &nbsp;·&nbsp; ' +
+      '<button type="button" class="rec-link" id="recBackGoal">change goal</button></p>' +
+      '<div class="rec-options rec-budgets">' + BUDGETS.map(function(b){
+        return '<button type="button" class="rec-option rec-budget" data-budget="' + b.key + '">' +
+          '<span><span>' + esc(b.label) + '</span><small>' + esc(b.desc) + '</small></span></button>';
+      }).join('') + '</div>';
+    document.getElementById('recBackGoal').addEventListener('click', renderStep1);
+    Array.prototype.forEach.call(body.querySelectorAll('[data-budget]'), function(btn){
+      btn.addEventListener('click', function(){
+        state.budget = btn.getAttribute('data-budget');
+        renderResults();
+      });
+    });
+  }
+
+  function renderResults(){
+    var out = compute(state.goal, state.budget);
+    stepLabel.textContent = 'Your top 3 matches';
+    var html = '';
+    if (out.note) html += '<p class="rec-note">' + esc(out.note) + '</p>';
+    html += '<p class="rec-context">' + esc(goalLabel(state.goal)) + ' • ' + esc(budgetLabel(state.budget)) +
+      ' &nbsp;·&nbsp; <button type="button" class="rec-link" id="recStartOver">start over</button></p>';
+    if (!out.results.length) {
+      html += '<p class="rec-note">No matches yet for this combination — try another goal or budget, or browse all tools below.</p>';
+    } else {
+      html += '<div class="rec-results">' + out.results.map(function(x, i){
+        var m = x.meta;
+        var rankLabel = i === 0 ? 'Best match' : i === 1 ? 'Great alternative' : 'Also worth a look';
+        var entry = minPrice(m.price);
+        var priceBit = hasFree(m.price) ? 'Free plan available'
+          : (isFinite(entry) ? 'From $' + entry + '/mo' : 'See official pricing');
+        var reason = priceBit + ' · ' + (m.strengths[0] || m.desc);
+        var out2 = '<article class="rec-result">' +
+          '<span class="rec-rank">' + rankLabel + '</span>' +
+          '<h3>' + esc(m.name) + '</h3>' +
+          '<span class="tag">' + esc(m.category) + '</span>' +
+          '<p class="rec-price">' + esc(m.price) + '</p>' +
+          '<p class="rec-why"><strong>Why this fits you:</strong> ' + esc(reason) + '</p>' +
+          '<div class="rec-actions">' +
+          '<a class="btn btn-small" href="' + esc(m.review) + '">Read Review →</a>' +
+          '<button type="button" class="btn btn-ghost btn-small rec-compare" data-review="' + esc(m.review) + '">+ Compare</button>';
+        if (m.official) {
+          out2 += '<a class="btn btn-ghost btn-small" href="' + esc(m.official) +
+            '" target="_blank" rel="noopener">Visit Official Site ↗</a>';
+        }
+        return out2 + '</div></article>';
+      }).join('') + '</div>';
+    }
+    body.innerHTML = html;
+    var startOver = document.getElementById('recStartOver');
+    if (startOver) startOver.addEventListener('click', renderStep1);
+    Array.prototype.forEach.call(body.querySelectorAll('.rec-compare'), function(btn){
+      btn.addEventListener('click', function(){
+        var card = findCardBySlug(slugOf(btn.getAttribute('data-review')));
+        if (window.NexusAICompare && window.NexusAICompare.add(card)) {
+          btn.textContent = '✓ Added to compare';
+          btn.disabled = true;
+        }
+      });
+    });
+  }
+
+  function openModal(){
+    state.goal = null;
+    state.budget = null;
+    renderStep1();
+    modal.hidden = false;
+    document.body.classList.add('rec-modal-open');
+    closeBtn.focus();
+  }
+  function closeModal(){
+    if (modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove('rec-modal-open');
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 })();
