@@ -261,6 +261,14 @@
     });
   });
 
+  /* ?q= deep link: pre-fill the search box from the URL (also powers the
+     WebSite SearchAction in the JSON-LD schema on index.html). */
+  try {
+    var qs = new URLSearchParams(window.location.search);
+    var q0 = qs.get('q');
+    if (q0 && searchInput) searchInput.value = q0;
+  } catch (e) {}
+
   apply();
 })();
 
