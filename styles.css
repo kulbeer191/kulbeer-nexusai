@@ -147,3 +147,17 @@ body.rec-modal-open{overflow:hidden}
 .stack-tools{font-size:14px;color:var(--muted);margin:0}
 .stack-tools a{font-weight:700}
 @media(max-width:820px){.stacks-grid{grid-template-columns:1fr}}
+
+/* ---- ROI Calculator page ---- */
+.calc-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start}
+.calc-slider{margin-bottom:20px}
+.calc-slider label{display:flex;justify-content:space-between;gap:12px;font-weight:700;margin-bottom:8px}
+.calc-slider output{color:var(--accent);white-space:nowrap}
+.calc-slider input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer}
+.calc-results{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.calc-stat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px}
+.calc-stat .num{font-size:26px;font-weight:800;color:#fff;line-height:1.2}
+.calc-stat .lbl{color:var(--muted);font-size:13.5px;margin-top:2px}
+.calc-stat .note{color:var(--muted);font-size:12.5px}
+.calc-recs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:820px){.calc-grid{grid-template-columns:1fr}.calc-recs{grid-template-columns:1fr}}

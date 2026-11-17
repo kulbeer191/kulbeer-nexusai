@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI ROI Calculator 2026: Hours &amp; Dollars Saved | NexusAI by Kulbeer</title>
+<meta name="description" content="Free AI ROI calculator by NexusAI by Kulbeer: enter your team size, hourly cost and hours saved per week to see annual hours saved, dollar savings, net ROI % and payback period — plus the top automation tools to get there.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="container nav">
+<div class="logo">Nexus<span>AI</span> <small style="color:#94a3b8;font-weight:600">by Kulbeer</small></div>
+<nav class="nav-links">
+<a href="index.html">Home</a>
+<a href="tool-template.html">Reviews</a>
+<a href="stacks.html">🔥 AI Stacks</a>
+<a href="calculator.html" class="active">💰 ROI Calculator</a>
+<a href="sponsor.html">Sponsor</a>
+<a class="btn" href="sponsor.html">Sponsor / Feature Your Tool</a>
+</nav>
+</div></header>
+
+<main>
+<section class="section"><div class="container">
+<p class="badge">FREE TOOL • UPDATES INSTANTLY</p>
+<h1 style="font-size:36px;margin:10px 0">AI ROI &amp; Time-Savings Calculator</h1>
+<p class="lead">How much could AI save your team? Move the sliders — your annual hours saved, dollar savings, net ROI and payback period update instantly.</p>
+
+<div class="calc-grid">
+<div class="card">
+<div class="calc-slider">
+<label for="team">Team size <output id="teamOut">10 people</output></label>
+<input type="range" id="team" min="1" max="100" step="1" value="10">
+</div>
+<div class="calc-slider">
+<label for="hourly">Average hourly cost <output id="hourlyOut">$45/hr</output></label>
+<input type="range" id="hourly" min="15" max="150" step="1" value="45">
+</div>
+<div class="calc-slider">
+<label for="hrs">Manual hours saved per person / week <output id="hrsOut">8 hrs/week</output></label>
+<input type="range" id="hrs" min="2" max="20" step="1" value="8">
+</div>
+<div class="calc-slider" style="margin-bottom:0">
+<label for="spend">Estimated monthly AI software spend <output id="spendOut">$100/mo</output></label>
+<input type="range" id="spend" min="0" max="500" step="5" value="100">
+</div>
+<p style="color:#94a3b8;font-size:13.5px;margin:16px 0 0">Assumes 52 working weeks a year, and that saved hours are redeployed to productive work. Tool prices change — confirm on each review page.</p>
+</div>
+
+<div class="calc-results">
+<div class="calc-stat"><div class="num" id="outHours">4,160 hrs</div><div class="lbl">Annual Hours Saved</div></div>
+<div class="calc-stat"><div class="num" id="outGross">$187,200</div><div class="lbl">Gross Annual Dollar Savings</div><div class="note" id="outNet">$186,000 net / year</div></div>
+<div class="calc-stat"><div class="num" id="outRoi">15,500%</div><div class="lbl">Net ROI</div><div class="note" id="outRoiNote">Net return on your AI spend</div></div>
+<div class="calc-stat"><div class="num" id="outPayback">≈ 2 days</div><div class="lbl">Payback Period</div><div class="note">Time for savings to cover your AI spend</div></div>
+</div>
+</div>
+
+<h2 style="margin-top:44px">Tools to get these savings</h2>
+<p class="lead" id="recNote">Picked for a team of 10 — start cheap, automate the repetitive work first.</p>
+<div class="calc-recs" id="recList"></div>
+
+<div style="margin-top:36px;background:#0f1626;border:1px solid #1e2a44;border-radius:16px;padding:24px;text-align:center">
+<h3 style="margin:0 0 8px">Want the full workflow, not just one tool?</h3>
+<p style="color:#94a3b8;margin:0 0 16px">See the Autonomous Executive &amp; Ops Automation Stack — the exact tools, in the exact order, with the combined monthly cost.</p>
+<a class="btn" href="stacks.html">See the AI Stacks →</a> &nbsp; <a class="btn btn-ghost" href="index.html">Browse All 50 Tools</a>
+</div>
+</div></section>
+</main>
+
+<footer><div class="container">
+<strong style="color:#e6edf7">NexusAI by Kulbeer</strong> — Curated Autonomous AI Agents &amp; Enterprise Tools.<br>
+Founder: Kulbeer • Contact: <a href="mailto:ukusa299@gmail.com">ukusa299@gmail.com</a> • <a href="index.html">Home</a> • <a href="sponsor.html">Sponsor</a> • <a href="sitemap.xml">Sitemap</a>
+</div></footer>
+
+<script>
+(function(){
+  function $(id){ return document.getElementById(id); }
+  function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+  function money(n){ return '$' + fmt(n); }
+  var RECS = {
+    small: [
+      {slug:'n8n', name:'n8n', why:'Free self-hosted automation — the cheapest way for a small team to start saving hours.'},
+      {slug:'zapier-agents', name:'Zapier Agents', why:'No-code AI agents that run your repetitive workflows across 7,000+ apps.'},
+      {slug:'claude', name:'Claude', why:'Drafting, research and analysis that turns hours of writing into minutes.'}
+    ],
+    large: [
+      {slug:'lindy-ai', name:'Lindy AI', why:'AI agents that handle meetings, research and follow-ups at team scale.'},
+      {slug:'zapier-agents', name:'Zapier Agents', why:'No-code AI agents that run your repetitive workflows across 7,000+ apps.'},
+      {slug:'manus-ai', name:'Manus AI', why:'Autonomous execution — hand it a goal and it works through the whole task.'}
+    ]
+  };
+  function calc(){
+    var team = +$('team').value, hourly = +$('hourly').value,
+        hrs = +$('hrs').value, spend = +$('spend').value;
+    $('teamOut').textContent = team + (team === 1 ? ' person' : ' people');
+    $('hourlyOut').textContent = '$' + hourly + '/hr';
+    $('hrsOut').textContent = hrs + ' hrs/week';
+    $('spendOut').textContent = '$' + spend + '/mo';
+    var annualHours = team * hrs * 52;
+    var gross = annualHours * hourly;
+    var annualSpend = spend * 12;
+    var net = gross - annualSpend;
+    $('outHours').textContent = fmt(annualHours) + ' hrs';
+    $('outGross').textContent = money(gross);
+    $('outNet').textContent = money(net) + ' net / year';
+    if (annualSpend === 0) {
+      $('outRoi').textContent = '∞';
+      $('outRoiNote').textContent = 'No AI spend yet — pure savings';
+      $('outPayback').textContent = 'Immediate';
+    } else {
+      var roi = net / annualSpend * 100;
+      $('outRoi').textContent = fmt(roi) + '%';
+      $('outRoiNote').textContent = 'Net return on your AI spend';
+      var months = annualSpend / (gross / 12);
+      if (months < 1) {
+        var days = Math.max(1, Math.round(months * 30));
+        $('outPayback').textContent = '≈ ' + days + (days === 1 ? ' day' : ' days');
+      } else {
+        $('outPayback').textContent = '≈ ' + months.toFixed(1) + ' months';
+      }
+    }
+    var list = team <= 10 ? RECS.small : RECS.large;
+    var wrap = $('recList');
+    wrap.innerHTML = '';
+    list.forEach(function(t, i){
+      var rank = ['Best match','Great alternative','Also worth a look'][i];
+      var card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = '<span class="tag">' + rank + '</span><h3>' + t.name + '</h3><p>' + t.why + '</p><p><a href="tools/' + t.slug + '.html">Read review →</a></p>';
+      wrap.appendChild(card);
+    });
+    $('recNote').textContent = team <= 10
+      ? 'Picked for a team of ' + team + ' — start cheap, automate the repetitive work first.'
+      : 'Picked for a team of ' + team + ' — agent-led automation that scales with headcount.';
+  }
+  ['team','hourly','hrs','spend'].forEach(function(id){
+    $(id).addEventListener('input', calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
