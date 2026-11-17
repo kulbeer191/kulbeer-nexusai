@@ -180,3 +180,150 @@
 
   apply();
 })();
+
+/* ---- Side-by-Side Live Tool Comparator ---- */
+(function(){
+  var MAX = 3;
+  var selected = []; /* card elements, in the order the user picked them */
+  var bar = document.getElementById('compareBar');
+  var namesEl = document.getElementById('compareSelected');
+  var nowBtn = document.getElementById('compareNow');
+  var clearBtn = document.getElementById('compareClear');
+  var modal = document.getElementById('compareModal');
+  var modalBody = document.getElementById('compareModalBody');
+  var closeBtn = document.getElementById('compareClose');
+  var toast = document.getElementById('compareToast');
+  var toastTimer = null;
+  if (!bar || !nowBtn || !modal) return;
+
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  function cardMeta(card){
+    var h3 = card.querySelector('h3');
+    var tag = card.querySelector('.tag');
+    var desc = card.querySelector('p:not(.price)');
+    var price = card.querySelector('.price');
+    var links = card.querySelectorAll('.actions a');
+    return {
+      name: h3 ? h3.textContent.trim() : '',
+      category: tag ? tag.textContent.trim() : '',
+      desc: desc ? desc.textContent.trim() : '',
+      price: price ? price.textContent.trim() : '',
+      strengths: (card.getAttribute('data-strengths') || '').split(' • ').filter(function(s){ return s.trim(); }),
+      review: links[0] ? links[0].getAttribute('href') : 'index.html',
+      official: links[1] ? links[1].getAttribute('href') : null
+    };
+  }
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.hidden = false;
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.hidden = true; }, 3200);
+  }
+
+  function renderBar(){
+    if (selected.length === 0) {
+      bar.hidden = true;
+      document.body.classList.remove('compare-bar-visible');
+      return;
+    }
+    bar.hidden = false;
+    document.body.classList.add('compare-bar-visible');
+    namesEl.innerHTML = selected.map(function(c){
+      return '<span class="compare-chip">' + esc(cardMeta(c).name) + '</span>';
+    }).join('');
+    nowBtn.textContent = 'Compare Now (' + selected.length + '/' + MAX + ')';
+    nowBtn.disabled = selected.length < 2;
+  }
+
+  function setToggle(card, btn, on){
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.textContent = on ? '✓ Added — remove' : '+ Compare';
+  }
+
+  function clearAll(){
+    selected.forEach(function(card){
+      var btn = card.querySelector('.compare-toggle');
+      if (btn) setToggle(card, btn, false);
+    });
+    selected = [];
+    renderBar();
+    closeModal();
+  }
+
+  function openModal(){
+    if (selected.length < 2) return;
+    var cols = selected.map(cardMeta);
+    var html = '<div class="compare-table-wrap"><table class="compare-table"><tbody>';
+    function row(label, cells){
+      return '<tr><th scope="row">' + label + '</th>' +
+        cells.map(function(c){ return '<td>' + c + '</td>'; }).join('') + '</tr>';
+    }
+    html += row('Tool', cols.map(function(m){ return '<strong>' + esc(m.name) + '</strong>'; }));
+    html += row('Category', cols.map(function(m){ return esc(m.category); }));
+    html += row('Pricing model', cols.map(function(m){
+      var free = /free/i.test(m.price);
+      var badge = free
+        ? '<span class="pricing-badge free">Free + Paid</span>'
+        : '<span class="pricing-badge paid">Paid only</span>';
+      return badge + '<br><span class="compare-price">' + esc(m.price) + '</span>';
+    }));
+    html += row('Key strengths', cols.map(function(m){
+      if (!m.strengths.length) return esc(m.desc);
+      return '<ul class="compare-strengths">' +
+        m.strengths.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>';
+    }));
+    html += row('Best use case', cols.map(function(m){ return esc(m.desc); }));
+    html += row('Links', cols.map(function(m){
+      var out = '<a class="btn btn-small" href="' + esc(m.review) + '">Read Review →</a>';
+      if (m.official) {
+        out += '<br><a class="btn btn-ghost btn-small" href="' + esc(m.official) +
+          '" target="_blank" rel="noopener">Visit Official Site ↗</a>';
+      }
+      return out;
+    }));
+    html += '</tbody></table></div>';
+    modalBody.innerHTML = html;
+    modal.hidden = false;
+    document.body.classList.add('compare-modal-open');
+    closeBtn.focus();
+  }
+
+  function closeModal(){
+    if (modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove('compare-modal-open');
+  }
+
+  document.querySelectorAll('.compare-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var card = btn.closest('article');
+      if (!card) return;
+      var i = selected.indexOf(card);
+      if (i >= 0) {
+        selected.splice(i, 1);
+        setToggle(card, btn, false);
+      } else {
+        if (selected.length >= MAX) {
+          showToast('You can compare up to 3 tools — remove one to add another.');
+          return;
+        }
+        selected.push(card);
+        setToggle(card, btn, true);
+      }
+      renderBar();
+    });
+  });
+
+  nowBtn.addEventListener('click', openModal);
+  clearBtn.addEventListener('click', clearAll);
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+})();
