@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kulbeer191.github.io/kulbeer-nexusai/sitemap.xml
