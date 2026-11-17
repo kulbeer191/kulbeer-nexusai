@@ -381,9 +381,9 @@
     image:  ['midjourney','leonardo-ai','adobe-firefly'],
     video:  ['runway','heygen','kling-ai','pika','luma-dream-machine'],
     agents: ['manus-ai','lindy-ai','zapier-agents','n8n','genspark','perplexity-teammates','skyvern','autogpt'],
-    /* No dedicated voice tools in the directory yet: closest voice-capable
-       tools (meeting transcription & voice cloning) as a fallback pool. */
-    voice:  ['fireflies-ai','otter-ai','heygen']
+    /* Dedicated voice tools (added 2026-11-17). The fallback pool below only
+       runs if the voice category is empty again. */
+    voice:  ['elevenlabs','descript','murf-ai','suno-ai','udio']
   };
   var state = { goal:null, budget:null };
 
