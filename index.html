@@ -24,17 +24,34 @@
 <p class="badge">CURATED FOR US TEAMS • NO HYPE, ONLY TESTED TOOLS</p>
 <h1>Curated Autonomous AI Agents &amp; Enterprise Tools</h1>
 <p>Find the AI tool that actually ships work — not just demos. Every listing is curated by Kulbeer for founders, operators and enterprise teams in the US.</p>
-<div class="search-wrap">
-<input id="toolSearch" type="search" placeholder="Search AI tools — try “coding”, “image”, “video”…" aria-label="Search AI tools">
+<div class="search-engine">
+<div class="search-box">
+<span class="search-icon" aria-hidden="true">&#128269;</span>
+<input id="toolSearch" type="search" placeholder="Search 1,000+ AI tools by task, problem, or name... e.g. 'edit video', 'coding assistant', 'free image generator'" aria-label="Search AI tools" autocomplete="off">
+<button id="searchGo" type="button" aria-label="Search">Search</button>
+</div>
+<div id="autocomplete" class="autocomplete" hidden></div>
+<div class="trending"><span>Trending AI Searches:</span>
+<button class="trend-pill" type="button" data-query="video">Video Editing</button>
+<button class="trend-pill" type="button" data-filter="agents">Autonomous Agents</button>
+<button class="trend-pill" type="button" data-filter="code">Coding</button>
+<button class="trend-pill" type="button" data-query="voice">Voice Cloning</button>
+<button class="trend-pill" type="button" data-query="free">Free AI Tools</button>
+<button class="trend-pill" type="button" data-filter="marketing">Marketing</button>
+</div>
 </div>
 <div class="filters" role="group" aria-label="Category filters">
 <button class="pill active" data-filter="all">All</button>
 <button class="pill" data-filter="agents">Autonomous Agents</button>
 <button class="pill" data-filter="chat">Chat &amp; Writing</button>
-<button class="pill" data-filter="code">Code</button>
-<button class="pill" data-filter="image">Image &amp; Video</button>
+<button class="pill" data-filter="code">Code &amp; Dev</button>
+<button class="pill" data-filter="image">Image Generation</button>
+<button class="pill" data-filter="video">Video &amp; Animation</button>
+<button class="pill" data-filter="voice">Voice &amp; Audio</button>
+<button class="pill" data-filter="marketing">Marketing &amp; SEO</button>
 <button class="pill" data-filter="productivity">Productivity</button>
 </div>
+<p id="resultCount" class="result-count">Showing 45 AI tools</p>
 <p style="color:#94a3b8;font-size:14px">Founder: Kulbeer • NexusAI by Kulbeer</p>
 </div></section>
 
@@ -43,12 +60,12 @@
 <p class="lead">Hand-picked, clearly priced, and linked to the official site. Start with the review, then visit the tool.</p>
 <div class="grid" id="toolGrid">
 
-<article class="card tool-card" data-category="chat">
-<span class="tag">Chat &amp; Writing</span>
+<article class="card tool-card" data-category="marketing">
+<span class="tag">Marketing &amp; SEO</span>
 <h3>ChatGPT</h3>
 <p>Conversational AI for writing, research, coding help and everyday work. The most widely used general AI assistant.</p>
-<p class="price">Free plan available • Paid plans from $20/mo</p>
-<div class="actions"><a href="tool-template.html">Read review →</a><a href="https://openai.com/chatgpt" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
+<p class="price">Business $20/user/mo annual • Full AI included</p>
+<div class="actions"><a href="tools/chatgpt.html">Read review →</a><a href="https://openai.com/chatgpt" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 
 <article class="card tool-card" data-category="chat">
@@ -56,15 +73,15 @@
 <h3>Claude</h3>
 <p>Anthropic’s assistant for long documents, careful reasoning and coding. Strong for analysis and safe, structured output.</p>
 <p class="price">Free plan available • Paid plans available</p>
-<div class="actions"><a href="tool-template.html">Read review →</a><a href="https://claude.ai" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
+<div class="actions"><a href="tools/claude.html">Read review →</a><a href="https://claude.ai" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 
 <article class="card tool-card" data-category="code">
-<span class="tag">Code</span>
+<span class="tag">Code &amp; Dev</span>
 <h3>GitHub Copilot</h3>
 <p>AI pair programmer inside your editor. Autocomplete, chat and code review for real codebases.</p>
 <p class="price">Paid plans • Free for verified students / open-source maintainers</p>
-<div class="actions"><a href="tool-template.html">Read review →</a><a href="https://github.com/features/copilot" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
+<div class="actions"><a href="tools/github-copilot.html">Read review →</a><a href="https://github.com/features/copilot" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 
 <article class="card tool-card" data-category="agents">
@@ -72,15 +89,15 @@
 <h3>AutoGPT-style Agents</h3>
 <p>Goal-driven agents that plan, browse and execute multi-step tasks with human oversight. Best for research and automation pilots.</p>
 <p class="price">Open-source / self-hosted options</p>
-<div class="actions"><a href="tool-template.html">Read review →</a><a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
+<div class="actions"><a href="tools/autogpt.html">Read review →</a><a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 
-<article class="card tool-card" data-category="image">
-<span class="tag">Image &amp; Video</span>
+<article class="card tool-card" data-category="video">
+<span class="tag">Video &amp; Animation</span>
 <h3>Midjourney</h3>
 <p>High-quality image generation for brand, marketing and concept art. Best-in-class style control for creative teams.</p>
 <p class="price">Paid plans • No permanent free tier</p>
-<div class="actions"><a href="tool-template.html">Read review →</a><a href="https://www.midjourney.com" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
+<div class="actions"><a href="tools/midjourney.html">Read review →</a><a href="https://www.midjourney.com" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 
 <article class="card tool-card" data-category="productivity">
@@ -88,7 +105,7 @@
 <h3>Notion AI</h3>
 <p>Write, summarise and organise inside Notion. Great for teams already living in docs, wikis and project tracking.</p>
 <p class="price">Add-on to Notion plans</p>
-<div class="actions"><a href="tool-template.html">Read review →</a><a href="https://www.notion.so/product/ai" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
+<div class="actions"><a href="tools/notion-ai.html">Read review →</a><a href="https://www.notion.so/product/ai" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 
 
@@ -114,42 +131,42 @@
 <div class="actions"><a href="tools/perplexity-teammates.html">Read review →</a><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 <article class="card tool-card" data-category="code">
-<span class="tag">Code</span>
+<span class="tag">Code &amp; Dev</span>
 <h3>Cursor</h3>
 <p>AI code editor with agent mode, multi-file edits and cloud agents, built on VS Code.</p>
 <p class="price">Free $0 • Plus $8/mo • Premium $30/mo</p>
 <div class="actions"><a href="tools/cursor.html">Read review →</a><a href="https://cursor.com/" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 <article class="card tool-card" data-category="code">
-<span class="tag">Code</span>
+<span class="tag">Code &amp; Dev</span>
 <h3>Devin Desktop (formerly Windsurf)</h3>
 <p>One command center for local and cloud coding agents, formerly Windsurf, with frontier models.</p>
 <p class="price">Free $0 • Pro $20/mo • Max $200/mo</p>
 <div class="actions"><a href="tools/devin-desktop.html">Read review →</a><a href="https://devin.ai/desktop" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 <article class="card tool-card" data-category="code">
-<span class="tag">Code</span>
+<span class="tag">Code &amp; Dev</span>
 <h3>Replit</h3>
 <p>Browser IDE where an AI Agent plans, builds and publishes full-stack apps from a prompt.</p>
 <p class="price">Free Starter • Core $20/mo • Pro $100/mo</p>
 <div class="actions"><a href="tools/replit.html">Read review →</a><a href="https://replit.com/" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
-<article class="card tool-card" data-category="image">
-<span class="tag">Image &amp; Video</span>
+<article class="card tool-card" data-category="video">
+<span class="tag">Video &amp; Animation</span>
 <h3>Runway</h3>
 <p>Text-to-video with Gen-4.5, plus editing, restyling and third-party models in one workspace.</p>
 <p class="price">Free $0 • Standard $15/mo • Pro $35/mo</p>
 <div class="actions"><a href="tools/runway.html">Read review →</a><a href="https://runway.com" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
-<article class="card tool-card" data-category="image">
-<span class="tag">Image &amp; Video</span>
+<article class="card tool-card" data-category="video">
+<span class="tag">Video &amp; Animation</span>
 <h3>Adobe Firefly</h3>
 <p>Commercially safe image, video and audio generation for marketing teams, inside Adobe&#x27;s ecosystem.</p>
 <p class="price">Free $0 • Standard $9.99/mo • Pro $19.99/mo</p>
 <div class="actions"><a href="tools/adobe-firefly.html">Read review →</a><a href="https://www.adobe.com/products/firefly.html" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
-<article class="card tool-card" data-category="image">
-<span class="tag">Image &amp; Video</span>
+<article class="card tool-card" data-category="video">
+<span class="tag">Video &amp; Animation</span>
 <h3>Leonardo.Ai</h3>
 <p>Consistent characters, product shots and campaign art with custom-trained models.</p>
 <p class="price">Free $0 • Essential $12/mo • Premium $30/mo</p>
@@ -213,21 +230,21 @@
 <div class="actions"><a href="tools/n8n.html">Read review →</a><a href="https://n8n.io" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 <article class="card tool-card" data-category="code">
-<span class="tag">Code</span>
+<span class="tag">Code &amp; Dev</span>
 <h3>v0 by Vercel</h3>
 <p>Prompt-to-live-app AI assistant from Vercel, with one-click deployment and GitHub sync.</p>
 <p class="price">Free $0 • Plus $30/user/mo</p>
 <div class="actions"><a href="tools/v0-by-vercel.html">Read review →</a><a href="https://v0.app/" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 <article class="card tool-card" data-category="code">
-<span class="tag">Code</span>
+<span class="tag">Code &amp; Dev</span>
 <h3>Lovable</h3>
 <p>AI full-stack engineer that builds production-grade software from plain language.</p>
 <p class="price">Free $0 • Pro $25/mo</p>
 <div class="actions"><a href="tools/lovable.html">Read review →</a><a href="https://lovable.dev/" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
-<article class="card tool-card" data-category="image">
-<span class="tag">Image &amp; Video</span>
+<article class="card tool-card" data-category="video">
+<span class="tag">Video &amp; Animation</span>
 <h3>Kling AI</h3>
 <p>Cinematic text-to-video with the Kling 4.0 model, story-locked keyframes and 4K output.</p>
 <p class="price">Free $0 • Standard $10/mo list</p>
@@ -269,7 +286,7 @@
 <div class="actions"><a href="tools/fireflies-ai.html">Read review →</a><a href="https://fireflies.ai/" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 </article>
 <article class="card tool-card" data-category="code">
-<span class="tag">Comparison • Code</span>
+<span class="tag">Comparison • Code &amp; Dev</span>
 <h3>v0 by Vercel vs Lovable</h3>
 <p>Two AI app builders, one question: which ships your MVP faster without a dev team?</p>
 <p class="price">v0 Plus $30/user/mo • Lovable Pro $25/mo</p>
@@ -299,7 +316,7 @@
 </article>
 
 <article class="card tool-card" data-category="code">
-<span class="tag">Code</span>
+<span class="tag">Code &amp; Dev</span>
 <h3>Bolt.new</h3>
 <p>Describe an app in plain language and get a working full-stack app running in the browser.</p>
 <p class="price">Free $0 • Pro $25/mo</p>
@@ -307,7 +324,7 @@
 </article>
 
 <article class="card tool-card" data-category="code">
-<span class="tag">Code</span>
+<span class="tag">Code &amp; Dev</span>
 <h3>CodeRabbit</h3>
 <p>AI code reviewer that checks every pull request line by line before humans do.</p>
 <p class="price">Free $0 • Essentials $24/dev/mo</p>
@@ -363,7 +380,7 @@
 </article>
 
 <article class="card tool-card" data-category="code">
-<span class="tag">Comparison • Code</span>
+<span class="tag">Comparison • Code &amp; Dev</span>
 <h3>Bolt.new vs Lovable</h3>
 <p>Two AI app builders at $25/mo, one question: which ships your MVP faster without a dev team?</p>
 <p class="price">Bolt.new Pro $25/mo • Lovable Pro $25/mo</p>
