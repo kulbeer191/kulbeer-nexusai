@@ -5,7 +5,7 @@
   var searchInput = document.getElementById('toolSearch');
   var grid = document.getElementById('toolGrid');
   var cards = Array.prototype.slice.call(document.querySelectorAll('.tool-card'));
-  var pills = Array.prototype.slice.call(document.querySelectorAll('.pill'));
+  var pills = Array.prototype.slice.call(document.querySelectorAll('.pill:not(.saved-pill)'));
   var trendPills = Array.prototype.slice.call(document.querySelectorAll('.trend-pill'));
   var emptyMsg = document.getElementById('noResults');
   var counter = document.getElementById('resultCount');
@@ -33,9 +33,78 @@
       desc: ps.length ? ps[0].textContent.trim() : '',
       price: (function(){ var pr = card.querySelector('.price'); return pr ? pr.textContent.trim() : ''; })(),
       href: link ? link.getAttribute('href') : '',
-      cat: card.getAttribute('data-category') || ''
+      cat: card.getAttribute('data-category') || '',
+      slug: (link ? link.getAttribute('href') : '').replace(/^tools\//, '').replace(/\.html$/, ''),
+      votes: parseInt(card.getAttribute('data-votes') || '0', 10) || 0
     };
   });
+
+  /* ---- Upvotes, bookmarks ("Saved Tools") and sorting (Upgrade #6) ---- */
+  var VOTE_KEY = 'nexusai_upvotes_v1';
+  var SAVE_KEY = 'nexusai_saved_v1';
+  function lsGet(key){ try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch(e){ return null; } }
+  function lsSet(key, val){ try { localStorage.setItem(key, JSON.stringify(val)); } catch(e){} }
+  var upvoted = lsGet(VOTE_KEY) || {};
+  var saved = lsGet(SAVE_KEY) || [];
+  var savedOnly = false;
+  var sortMode = 'featured';
+  var sortSelect = document.getElementById('sortSelect');
+  var savedPill = document.getElementById('savedPill');
+  function currentVotes(m){ return m.votes + (upvoted[m.slug] ? 1 : 0); }
+  function isSaved(m){ return saved.indexOf(m.slug) >= 0; }
+  function hasFree(p){
+    return (/free/i.test(p) && !/\bno\b[\s\S]*\bfree\b/i.test(p)) || /\$0\b/.test(p);
+  }
+  function renderVoteSave(m){
+    var up = m.card.querySelector('.upvote-btn');
+    if (up) {
+      var on = !!upvoted[m.slug];
+      up.classList.toggle('active', on);
+      up.setAttribute('aria-pressed', on ? 'true' : 'false');
+      var n = up.querySelector('.upvote-count');
+      if (n) n.textContent = String(currentVotes(m));
+    }
+    var sv = m.card.querySelector('.save-btn');
+    if (sv) {
+      var svOn = isSaved(m);
+      sv.classList.toggle('active', svOn);
+      sv.setAttribute('aria-pressed', svOn ? 'true' : 'false');
+      sv.textContent = svOn ? '🔖 Saved ✓' : '🔖 Save';
+    }
+  }
+  function updateSavedPill(){
+    if (savedPill) savedPill.textContent = '🔖 Saved (' + saved.length + ')';
+  }
+  meta.forEach(function(m){
+    var up = m.card.querySelector('.upvote-btn');
+    if (up) up.addEventListener('click', function(){
+      if (upvoted[m.slug]) delete upvoted[m.slug]; else upvoted[m.slug] = true;
+      lsSet(VOTE_KEY, upvoted);
+      renderVoteSave(m);
+      if (sortMode === 'trending') apply();
+    });
+    var sv = m.card.querySelector('.save-btn');
+    if (sv) sv.addEventListener('click', function(){
+      var i = saved.indexOf(m.slug);
+      if (i >= 0) saved.splice(i, 1); else saved.push(m.slug);
+      lsSet(SAVE_KEY, saved);
+      renderVoteSave(m);
+      updateSavedPill();
+      if (savedOnly) apply();
+    });
+  });
+  if (savedPill) savedPill.addEventListener('click', function(){
+    savedOnly = !savedOnly;
+    savedPill.classList.toggle('active', savedOnly);
+    savedPill.setAttribute('aria-pressed', savedOnly ? 'true' : 'false');
+    apply();
+  });
+  if (sortSelect) sortSelect.addEventListener('change', function(){
+    sortMode = sortSelect.value;
+    apply();
+  });
+  meta.forEach(renderVoteSave);
+  updateSavedPill();
 
   function wordsOf(q){ return q.split(/\s+/).filter(function(w){ return w.length > 0; }); }
 
@@ -64,6 +133,7 @@
     else if (q) counter.textContent = "Showing " + n + " AI tools for '" + q + "'";
     else if (activeCat !== 'all') counter.textContent = "Showing " + n + " AI tools in " + label;
     else counter.textContent = "Showing " + n + " AI tools";
+    if (savedOnly) counter.textContent += ' \u2022 Saved only';
   }
 
   function apply(){
@@ -72,12 +142,24 @@
     var visible = [];
     meta.forEach(function(m){
       var okC = activeCat === 'all' || m.cat === activeCat;
+      var okS = !savedOnly || isSaved(m);
       var s = q ? score(m, q, words) : 1;
       m.score = s;
-      if (okC && s > 0) visible.push(m);
+      if (okC && okS && s > 0) visible.push(m);
     });
-    // Rank: highest relevance first; original order breaks ties.
-    visible.sort(function(a, b){ return (b.score - a.score) || (a.index - b.index); });
+    // Rank: chosen sort wins; "Featured" keeps relevance, then original order.
+    if (sortMode === 'trending') {
+      visible.sort(function(a, b){ return (currentVotes(b) - currentVotes(a)) || (a.index - b.index); });
+    } else if (sortMode === 'free') {
+      visible.sort(function(a, b){
+        var fa = hasFree(a.price) ? 0 : 1, fb = hasFree(b.price) ? 0 : 1;
+        return (fa - fb) || (currentVotes(b) - currentVotes(a)) || (a.index - b.index);
+      });
+    } else if (sortMode === 'az') {
+      visible.sort(function(a, b){ return a.title.localeCompare(b.title) || (a.index - b.index); });
+    } else {
+      visible.sort(function(a, b){ return (b.score - a.score) || (a.index - b.index); });
+    }
     var shown = {};
     visible.forEach(function(m){ shown[m.index] = true; });
     meta.forEach(function(m){
@@ -89,7 +171,8 @@
     setCounter(n, q);
     if (emptyMsg) {
       emptyMsg.style.display = n === 0 ? 'block' : 'none';
-      if (n === 0 && q) emptyMsg.textContent = "No tools match '" + q + "'. Try a different keyword, or browse All tools.";
+      if (n === 0 && savedOnly && saved.length === 0) emptyMsg.textContent = "You haven't saved any tools yet — tap \uD83D\uDD16 Save on any card to keep it here.";
+      else if (n === 0 && q) emptyMsg.textContent = "No tools match '" + q + "'. Try a different keyword, or browse All tools.";
     }
     return n;
   }
