@@ -1,3 +1,4 @@
+# Sitemap URL comes from site-config.json BASE_URL
 User-agent: *
 Allow: /
 
