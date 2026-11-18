@@ -145,6 +145,11 @@
 </select>
 <label for="msg">Message (optional)</label>
 <textarea id="msg" name="message" rows="4" placeholder="What does your tool do, and who is it for?"></textarea>
+<!-- Honeypot anti-spam field (Autonomous Directive 2026-11-18): hidden from real visitors; the script below silently drops the submission if a bot fills it. -->
+<div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+<label for="website">Leave this field empty</label>
+<input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+</div>
 <br><br>
 <button class="btn" type="submit">Send inquiry →</button>
 </form>
@@ -205,6 +210,9 @@
   if (form) {
     form.addEventListener('submit', function(e){
       e.preventDefault();
+      // Honeypot anti-spam: silently drop submissions from bots that filled the hidden field.
+      var hp = document.getElementById('website');
+      if (hp && hp.value) { return; }
       var name = document.getElementById('name').value.trim();
       var email = document.getElementById('email').value.trim();
       var company = document.getElementById('company').value.trim();
