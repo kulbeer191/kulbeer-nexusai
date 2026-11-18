@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/sponsor.html</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -313,5 +313,53 @@
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/prompts.html</loc>
     <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/gumloop.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/smythos.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/augment-code.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/junie.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/krea-ai.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/ideogram.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/frase.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/jenni-ai.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/reclaim-ai.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/fellow.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/gumloop-vs-zapier-agents.html</loc>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/augment-code-vs-cursor.html</loc>
+    <lastmod>2026-11-18</lastmod>
   </url>
 </urlset>
