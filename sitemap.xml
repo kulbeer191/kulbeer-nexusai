@@ -3,13 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/sponsor.html</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -458,5 +458,53 @@
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/todoist-vs-asana.html</loc>
     <lastmod>2026-11-19</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/crewai.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/browser-use.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/zed.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/cline.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/magnific.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/invideo-ai.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/gemini.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/lex.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/linear.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/routine.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/gemini-vs-chatgpt.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/zed-vs-cline.html</loc>
+    <lastmod>2026-11-20</lastmod>
   </url>
 </urlset>
