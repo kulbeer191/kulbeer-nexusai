@@ -65,8 +65,8 @@
 <p class="lead">Who you reach when you sponsor NexusAI by Kulbeer — and why they convert.</p>
 <div class="grid">
 <div class="card"><span class="tag">100% US FOCUS</span><h3>100% US Tech &amp; AI Buyer Focus</h3><p>Every page is written for US founders, operators and enterprise teams evaluating AI tools for real work — US pricing, US buying cycles, US use cases.</p></div>
-<div class="card"><span class="tag">CURATED DIRECTORY</span><h3>Curated Autonomous Agents &amp; Enterprise Tools Directory</h3><p>122 tools and comparisons in the directory, with 122 SEO review and comparison pages live — every listing curated by Kulbeer. Editorial reviews are independent and never paid for — featured slots are paid placement and are always clearly labeled “Sponsored”.</p></div>
-<div class="card"><span class="tag">ORGANIC SEARCH</span><h3>Fast-Growing Organic Search Footprint</h3><p>Google Search Console verification tag installed, with 127 URLs in our search sitemap and every review page built for US buyer queries like “best AI tool for…” and “X vs Y”.</p></div>
+<div class="card"><span class="tag">CURATED DIRECTORY</span><h3>Curated Autonomous Agents &amp; Enterprise Tools Directory</h3><p>125 tools and comparisons in the directory, with 125 SEO review and comparison pages live — every listing curated by Kulbeer. Editorial reviews are independent and never paid for — featured slots are paid placement and are always clearly labeled “Sponsored”.</p></div>
+<div class="card"><span class="tag">ORGANIC SEARCH</span><h3>Fast-Growing Organic Search Footprint</h3><p>Google Search Console verification tag installed, with 133 URLs in our search sitemap and every review page built for US buyer queries like “best AI tool for…” and “X vs Y”.</p></div>
 </div>
 
 <h2 style="margin-top:44px" id="packages">Sponsorship packages</h2>
@@ -122,8 +122,10 @@
 <p class="lead">Tell us about your tool and which package you want. We reply within one business day.</p>
 <div class="grid inquiry-grid">
 <div class="box">
-<!-- Formspree-ready: to use a form backend, replace the action with your Formspree endpoint, e.g. action="https://formspree.io/f/YOUR_FORM_ID" method="POST". As shipped, submit opens the visitor's email app addressed to ukusa299@gmail.com. -->
-<form class="form" id="inquiryForm" action="mailto:ukusa299@gmail.com" method="post" enctype="text/plain">
+<!-- Sponsorship form backend: Web3Forms (free plan, form "NexusAI" under ukusa299@gmail.com). Submissions POST to https://api.web3forms.com/submit and are emailed to ukusa299@gmail.com. The access key is a public client-side key by design. -->
+<form class="form" id="inquiryForm" action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="1a42f3c2-e1b3-4a8c-b528-08c50a5c30f5">
+<input type="hidden" name="subject" value="New NexusAI Sponsorship Inquiry">
 <label for="name">Your name</label>
 <input id="name" name="name" type="text" required>
 <label for="email">Work email</label>
@@ -157,7 +159,9 @@
 <br><br>
 <button class="btn" type="submit">Send inquiry →</button>
 </form>
-<p style="color:#94a3b8;font-size:14px;margin-top:12px">Submitting opens your email app addressed to ukusa299@gmail.com.</p>
+<div id="formSuccess" hidden style="background:#14532d;border:1px solid #22c55e;color:#bbf7d0;padding:14px 16px;border-radius:10px;margin-top:12px;font-weight:600">Thank you! Your sponsorship inquiry has been received. Kulbeer will reply within 24 hours.</div>
+<div id="formError" hidden style="background:#450a0a;border:1px solid #ef4444;color:#fecaca;padding:14px 16px;border-radius:10px;margin-top:12px;font-weight:600">Something went wrong sending your inquiry. Please try again, or email ukusa299@gmail.com directly.</div>
+<p style="color:#94a3b8;font-size:14px;margin-top:12px">Your inquiry is sent securely — no email app needed. We reply within one business day.</p>
 </div>
 
 <div class="box" style="text-align:center">
@@ -173,6 +177,7 @@
 
 <footer><div class="container">
 <strong style="color:#e6edf7">NexusAI by Kulbeer</strong> • Founder: Kulbeer • <a href="mailto:ukusa299@gmail.com">ukusa299@gmail.com</a> • <a href="index.html">Home</a>
+ • <a href="about.html">About</a> • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a>
 </div></footer>
 
 <script>
@@ -222,7 +227,7 @@
     });
   });
   if (pkgSelect) { pkgSelect.addEventListener('change', function(){ syncBudget(pkgSelect.value); }); }
-  // Inquiry form: compose a proper mailto with subject + body
+  // Inquiry form: submit via Web3Forms (AJAX) — no mail app needed.
   var form = document.getElementById('inquiryForm');
   if (form) {
     form.addEventListener('submit', function(e){
@@ -230,16 +235,26 @@
       // Honeypot anti-spam: silently drop submissions from bots that filled the hidden field.
       var hp = document.getElementById('website');
       if (hp && hp.value) { return; }
-      var name = document.getElementById('name').value.trim();
-      var email = document.getElementById('email').value.trim();
-      var company = document.getElementById('company').value.trim();
-      var toolUrl = document.getElementById('toolUrl').value.trim();
-      var pkg = pkgSelect ? pkgSelect.value : '';
-      var budget = document.getElementById('budget').value;
-      var msg = document.getElementById('msg').value.trim();
-      var subject = 'Sponsorship inquiry — ' + company + ' (' + pkg + ')';
-      var body = 'Name: ' + name + '\nWork email: ' + email + '\nCompany Name: ' + company + '\nTool URL: ' + toolUrl + '\nPackage Choice: ' + pkg + '\nBudget: ' + budget + '\n\nMessage:\n' + msg;
-      window.location.href = 'mailto:ukusa299@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      var btn = form.querySelector('button[type="submit"]');
+      var ok = document.getElementById('formSuccess');
+      var err = document.getElementById('formError');
+      if (err) err.hidden = true;
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending\u2026'; }
+      var fd = new FormData(form);
+      fd.delete('website'); // honeypot stays out of the submission
+      fetch('https://api.web3forms.com/submit', {method: 'POST', body: fd, headers: {'Accept': 'application/json'}})
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          if (data && data.success) {
+            form.hidden = true;
+            if (ok) ok.hidden = false;
+            if (ok) ok.scrollIntoView({behavior: 'smooth', block: 'center'});
+          } else { throw new Error('submit failed'); }
+        })
+        .catch(function(){
+          if (err) err.hidden = false;
+          if (btn) { btn.disabled = false; btn.textContent = 'Send inquiry \u2192'; }
+        });
     });
   }
 })();
