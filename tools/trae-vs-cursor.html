@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trae vs Cursor (2026): Which AI Editor Is Best? | NexusAI by Kulbeer</title>
 <meta name="description" content="Trae vs Cursor 2026 by NexusAI by Kulbeer: ByteDance’s all-models AI editor vs the VS Code-based agent leader — pricing, models, agents and fit compared.">
@@ -68,15 +70,17 @@
 <body>
 <header><div class="container nav">
 <div class="logo">Nexus<span>AI</span> <small style="color:#94a3b8;font-weight:600">by Kulbeer</small></div>
-<nav class="nav-links">
+<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+<nav class="nav-links" id="siteNav">
 <a href="../index.html">Home</a>
-<a href="../tool-template.html" class="active">Reviews</a>
+<a href="../index.html#toolGrid">Reviews</a>
 <a href="../stacks.html">🔥 AI Stacks</a>
 <a href="../calculator.html">💰 ROI Calculator</a>
 <a href="../prompts.html">⚡ Prompt Library</a>
 <a href="../sponsor.html">Sponsor</a>
 <a class="btn" href="../sponsor.html">Sponsor / Feature Your Tool</a>
 </nav>
+<script>(function(){var b=document.querySelector('.nav-toggle'),n=document.getElementById('siteNav');if(!b||!n)return;b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');b.setAttribute('aria-expanded','false');}});})();</script>
 </div></header>
 
 <main>
@@ -92,7 +96,7 @@
 <tr><td><strong>Free plan</strong></td><td>Free $0 — Auto mode, 5,000 autocompletions a month, 2 cloud tasks</td><td>Free $0 — limited agent and Chat requests</td></tr>
 <tr><td><strong>Entry paid price</strong></td><td>Pro $20/mo — every model plus $20 of monthly usage</td><td>Plus $8/mo — shared AI usage pool; Grok models only</td></tr>
 <tr><td><strong>Flagship paid tier</strong></td><td>Ultra $200/mo — 10x usage, 20 cloud tasks, early model access</td><td>Ultra $200/mo — 50x Plus usage, earliest access to new products</td></tr>
-<tr><td><strong>Model access</strong></td><td>Claude, GPT and Gemini-class models in one editor, no separate subscriptions</td><td>OpenAI, Anthropic, Gemini, SpaceXAI and Cursor models — third-party models billed at API list price on top</td></tr>
+<tr><td><strong>Model access</strong></td><td>Claude, GPT and Gemini-class models in one editor, no separate subscriptions</td><td>OpenAI, Anthropic, Gemini, xAI (Grok) and Cursor models — third-party models billed at API list price on top</td></tr>
 <tr><td><strong>Agent capability</strong></td><td>SOLO agent plans and ships multi-file changes; cloud tasks run in parallel</td><td>Agent mode handles multi-file edits, terminal commands, cloud agents and PR review via Bugbot</td></tr>
 <tr><td><strong>Best for</strong></td><td>Solo developers who want every model in one familiar editor</td><td>Professional developers who live in VS Code and want a proven agent</td></tr>
 <tr><td><strong>Key limitation</strong></td><td>ByteDance ownership — a deal-breaker for some US teams; prices doubled in Sept 2026</td><td>Pricing restructured Oct 2026 around The X Subscription; heavy use burns the weekly pool fast</td></tr>
@@ -112,7 +116,7 @@
 <div class="box"><h3>Cursor — Pros</h3><ul>
 <li>VS Code-based, so existing extensions, themes, and keybindings carry over</li>
 <li>Agent mode handles multi-file edits, runs terminal commands, and continues via cloud agents with PR review (Bugbot)</li>
-<li>Model choice across OpenAI, Anthropic, Gemini, SpaceXAI, and Cursor's own models</li>
+<li>Model choice across OpenAI, Anthropic, Gemini, xAI (Grok), and Cursor's own models</li>
 </ul><h3 style="margin-top:18px">Cursor — Cons</h3><ul>
 <li>Pricing was restructured in Oct 2026 around The X Subscription, which is confusing for new buyers</li>
 <li>Third-party models (Claude, GPT, Gemini) are billed separately at API list price on top of the subscription</li>
