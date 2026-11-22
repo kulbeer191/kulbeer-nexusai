@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI ROI Calculator 2026: Hours &amp; Dollars Saved | NexusAI by Kulbeer</title>
 <meta name="description" content="Free AI ROI calculator by NexusAI by Kulbeer: enter your team size, hourly cost and hours saved per week to see annual hours saved, dollar savings, net ROI % and payback period — plus the top automation tools to get there.">
@@ -32,15 +34,17 @@
 <body>
 <header><div class="container nav">
 <div class="logo">Nexus<span>AI</span> <small style="color:#94a3b8;font-weight:600">by Kulbeer</small></div>
-<nav class="nav-links">
+<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+<nav class="nav-links" id="siteNav">
 <a href="index.html">Home</a>
-<a href="tool-template.html">Reviews</a>
+<a href="index.html#toolGrid">Reviews</a>
 <a href="stacks.html">🔥 AI Stacks</a>
 <a href="calculator.html" class="active">💰 ROI Calculator</a>
 <a href="prompts.html">⚡ Prompt Library</a>
 <a href="sponsor.html">Sponsor</a>
 <a class="btn" href="sponsor.html">Sponsor / Feature Your Tool</a>
 </nav>
+<script>(function(){var b=document.querySelector('.nav-toggle'),n=document.getElementById('siteNav');if(!b||!n)return;b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');b.setAttribute('aria-expanded','false');}});})();</script>
 </div></header>
 
 <main>
@@ -76,6 +80,7 @@
 <div class="calc-stat"><div class="num" id="outRoi">15,500%</div><div class="lbl">Net ROI</div><div class="note" id="outRoiNote">Net return on your AI spend</div></div>
 <div class="calc-stat"><div class="num" id="outPayback">≈ 2 days</div><div class="lbl">Payback Period</div><div class="note">Time for savings to cover your AI spend</div></div>
 </div>
+<p style="color:#94a3b8;font-size:13.5px;margin:14px 0 0">Estimated projection based on your inputs &mdash; actual savings vary by team, tool adoption and workflow. Figures are illustrative, not a guarantee.</p>
 </div>
 
 <h2 style="margin-top:44px">Tools to get these savings</h2>
@@ -85,7 +90,7 @@
 <div style="margin-top:36px;background:#0f1626;border:1px solid #1e2a44;border-radius:16px;padding:24px;text-align:center">
 <h3 style="margin:0 0 8px">Want the full workflow, not just one tool?</h3>
 <p style="color:#94a3b8;margin:0 0 16px">See the Autonomous Executive &amp; Ops Automation Stack — the exact tools, in the exact order, with the combined monthly cost.</p>
-<a class="btn" href="stacks.html">See the AI Stacks →</a> &nbsp; <a class="btn btn-ghost" href="index.html">Browse All 50 Tools</a>
+<a class="btn" href="stacks.html">See the AI Stacks →</a> &nbsp; <a class="btn btn-ghost" href="index.html">Browse All AI Tools</a>
 </div>
 </div></section>
 </main>

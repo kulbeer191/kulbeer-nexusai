@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sponsor NexusAI by Kulbeer — Enterprise Media Kit &amp; Sponsorship | Reach High-Intent US AI Buyers</title>
 <meta name="description" content="Sponsor NexusAI by Kulbeer. Reach high-intent US AI buyers and enterprise founders who compare tools and pricing before they buy. Featured listing $299/month, deep-dive review $499, site-wide banner $799/month. Contact ukusa299@gmail.com.">
@@ -37,15 +39,17 @@
 <body>
 <header><div class="container nav">
 <div class="logo">Nexus<span>AI</span> <small style="color:#94a3b8;font-weight:600">by Kulbeer</small></div>
-<nav class="nav-links">
+<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+<nav class="nav-links" id="siteNav">
 <a href="index.html">Home</a>
-<a href="tool-template.html">Reviews</a>
+<a href="index.html#toolGrid">Reviews</a>
 <a href="stacks.html">🔥 AI Stacks</a>
 <a href="calculator.html">💰 ROI Calculator</a>
 <a href="prompts.html">⚡ Prompt Library</a>
 <a href="sponsor.html" class="active">Sponsor</a>
 <a class="btn" href="#inquiry">Partner With Us</a>
 </nav>
+<script>(function(){var b=document.querySelector('.nav-toggle'),n=document.getElementById('siteNav');if(!b||!n)return;b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');b.setAttribute('aria-expanded','false');}});})();</script>
 </div></header>
 
 <main>
@@ -61,8 +65,8 @@
 <p class="lead">Who you reach when you sponsor NexusAI by Kulbeer — and why they convert.</p>
 <div class="grid">
 <div class="card"><span class="tag">100% US FOCUS</span><h3>100% US Tech &amp; AI Buyer Focus</h3><p>Every page is written for US founders, operators and enterprise teams evaluating AI tools for real work — US pricing, US buying cycles, US use cases.</p></div>
-<div class="card"><span class="tag">CURATED DIRECTORY</span><h3>Curated Autonomous Agents &amp; Enterprise Tools Directory</h3><p>122 tools and comparisons in the directory, with 122 SEO review and comparison pages live — every listing curated by Kulbeer, never scraped or paid-for placement.</p></div>
-<div class="card"><span class="tag">ORGANIC SEARCH</span><h3>Fast-Growing Organic Search Footprint</h3><p>Google Search Console verification tag installed, with 128 URLs in our search sitemap and every review page built for US buyer queries like “best AI tool for…” and “X vs Y”.</p></div>
+<div class="card"><span class="tag">CURATED DIRECTORY</span><h3>Curated Autonomous Agents &amp; Enterprise Tools Directory</h3><p>122 tools and comparisons in the directory, with 122 SEO review and comparison pages live — every listing curated by Kulbeer. Editorial reviews are independent and never paid for — featured slots are paid placement and are always clearly labeled “Sponsored”.</p></div>
+<div class="card"><span class="tag">ORGANIC SEARCH</span><h3>Fast-Growing Organic Search Footprint</h3><p>Google Search Console verification tag installed, with 127 URLs in our search sitemap and every review page built for US buyer queries like “best AI tool for…” and “X vs Y”.</p></div>
 </div>
 
 <h2 style="margin-top:44px" id="packages">Sponsorship packages</h2>
@@ -77,7 +81,7 @@
 <li>Top pinned placement on the homepage grid</li>
 <li>“Featured” badge on your card and review page</li>
 <li>Priority inclusion in category filters</li>
-<li>Full review page with pros, cons and pricing table</li>
+<li>Your review page kept live in the directory while featured</li>
 <li>Monthly click reporting by email</li>
 </ul>
 <p style="margin-top:16px"><a class="btn" href="#inquiry" data-package="Featured Tool Listing — $299/month">Book Featured Listing</a></p>
@@ -89,7 +93,7 @@
 <p style="font-size:28px;font-weight:800;color:#fff;margin:6px 0 2px">$499<span style="font-size:15px;color:#94a3b8"> one-time</span></p>
 <p>A full review written to win US buyers — and it never expires.</p>
 <ul style="color:#94a3b8;padding-left:20px;font-size:14.5px">
-<li>Full SEO-optimized review &amp; comparison article written for US buyers</li>
+<li>A brand-new, custom-written deep-dive review &amp; comparison article, written from your docs and product for US buyers</li>
 <li>Permanently indexed in the directory and sitemap</li>
 <li>Pros, cons, pricing table and Visit Official Site button</li>
 <li>Linked from category pages and related comparisons</li>
@@ -112,7 +116,7 @@
 <p style="margin-top:16px"><a class="btn" href="#inquiry" data-package="Site-Wide Header Banner — $799/month">Book the Header Banner</a></p>
 </div>
 </div>
-<p style="color:#94a3b8;font-size:14px;margin-top:16px">Sponsorship does not buy a positive review. Every sponsored tool is clearly labelled, and our reviews stay independent. Founder: Kulbeer.</p>
+<p style="color:#94a3b8;font-size:14px;margin-top:16px">Sponsorship does not buy a positive review. Every sponsored tool is clearly labelled, and our reviews stay independent. Featured buys placement for your review page; Dedicated buys the review itself, written for you. Founder: Kulbeer.</p>
 
 <h2 style="margin-top:44px" id="inquiry">Book your sponsorship</h2>
 <p class="lead">Tell us about your tool and which package you want. We reply within one business day.</p>
@@ -195,6 +199,17 @@
   }
   // Package buttons pre-select the package in the inquiry form
   var pkgSelect = document.getElementById('package');
+  var budgetSelect = document.getElementById('budget');
+  function syncBudget(pkgVal){
+    if (!budgetSelect || !pkgVal) return;
+    var want = null;
+    if (pkgVal.indexOf('$799') !== -1) want = '$500 \u2013 $1,000';
+    else if (pkgVal.indexOf('$299') !== -1 || pkgVal.indexOf('$499') !== -1) want = 'Under $500';
+    if (!want) return;
+    for (var j = 0; j < budgetSelect.options.length; j++) {
+      if (budgetSelect.options[j].text === want) { budgetSelect.selectedIndex = j; break; }
+    }
+  }
   Array.prototype.forEach.call(document.querySelectorAll('[data-package]'), function(btn){
     btn.addEventListener('click', function(){
       if (pkgSelect) {
@@ -202,9 +217,11 @@
         for (var i = 0; i < pkgSelect.options.length; i++) {
           if (pkgSelect.options[i].value === val) { pkgSelect.selectedIndex = i; break; }
         }
+        syncBudget(val);
       }
     });
   });
+  if (pkgSelect) { pkgSelect.addEventListener('change', function(){ syncBudget(pkgSelect.value); }); }
   // Inquiry form: compose a proper mailto with subject + body
   var form = document.getElementById('inquiryForm');
   if (form) {

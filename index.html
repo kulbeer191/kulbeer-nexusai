@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexusAI by Kulbeer — Curated Autonomous AI Agents &amp; Enterprise Tools</title>
 <meta name="description" content="NexusAI by Kulbeer — curated autonomous AI agents and enterprise tools for US teams. Search, compare and discover trusted AI tools. Founder: Kulbeer.">
@@ -37,15 +39,17 @@
 <body>
 <header><div class="container nav">
 <div class="logo">Nexus<span>AI</span> <small style="color:#94a3b8;font-weight:600">by Kulbeer</small></div>
-<nav class="nav-links">
+<button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="siteNav">☰</button>
+<nav class="nav-links" id="siteNav">
 <a href="index.html" class="active">Home</a>
-<a href="tool-template.html">Reviews</a>
+<a href="#toolGrid">Reviews</a>
 <a href="stacks.html">🔥 AI Stacks</a>
 <a href="calculator.html">💰 ROI Calculator</a>
 <a href="prompts.html">⚡ Prompt Library</a>
 <a href="sponsor.html">Sponsor</a>
 <a class="btn" href="sponsor.html">Sponsor / Feature Your Tool</a>
 </nav>
+<script>(function(){var b=document.querySelector('.nav-toggle'),n=document.getElementById('siteNav');if(!b||!n)return;b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');});n.addEventListener('click',function(e){if(e.target.tagName==='A'){n.classList.remove('open');b.setAttribute('aria-expanded','false');}});})();</script>
 </div></header>
 
 <main>
@@ -57,7 +61,7 @@
 <div class="search-row">
 <div class="search-box">
 <span class="search-icon" aria-hidden="true">&#128269;</span>
-<input id="toolSearch" type="search" placeholder="Search 1,000+ AI tools by task, problem, or name... e.g. 'edit video', 'coding assistant', 'free image generator'" aria-label="Search AI tools" autocomplete="off">
+<input id="toolSearch" type="search" placeholder="Search AI tools by task, problem, or name..." aria-label="Search AI tools" autocomplete="off">
 <button id="searchGo" type="button" aria-label="Search">Search</button>
 </div>
 <button id="recommenderOpen" class="rec-open-btn" type="button">✨ Find My Perfect AI</button>
@@ -189,7 +193,7 @@
 <button class="compare-toggle" type="button" aria-pressed="false">+ Compare</button>
 <div class="card-utils"><button class="upvote-btn" type="button" aria-pressed="false">▲ <span class="upvote-count">1180</span></button><button class="save-btn" type="button" aria-pressed="false">🔖 Save</button></div>
 </article>
-<article data-votes="1984" class="card tool-card" data-category="code" data-strengths="VS Code-based, so existing extensions, themes, and keybindings carry over • Agent mode handles multi-file edits, runs terminal commands, and continues via cloud agents with PR review (Bugbot) • Model choice across OpenAI, Anthropic, Gemini, SpaceXAI, and Cursor&#x27;s own models">
+<article data-votes="1984" class="card tool-card" data-category="code" data-strengths="VS Code-based, so existing extensions, themes, and keybindings carry over • Agent mode handles multi-file edits, runs terminal commands, and continues via cloud agents with PR review (Bugbot) • Model choice across OpenAI, Anthropic, Gemini, xAI (Grok), and Cursor&#x27;s own models">
 <span class="tag">Code &amp; Dev</span>
 <h3>Cursor</h3>
 <p>AI code editor with agent mode, multi-file edits and cloud agents, built on VS Code.</p>
@@ -311,7 +315,7 @@
 <span class="tag">Autonomous Agents</span>
 <h3>n8n</h3>
 <p>Visual, fair-code platform for building AI agents and workflows across 400+ apps.</p>
-<p class="price">Free self-hosted • Starter 20€/mo annual</p>
+<p class="price">Free self-hosted • Starter 20€/mo (~$22) annual</p>
 <div class="actions"><a href="tools/n8n.html">Read review →</a><a href="https://n8n.io" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 <button class="compare-toggle" type="button" aria-pressed="false">+ Compare</button>
 <div class="card-utils"><button class="upvote-btn" type="button" aria-pressed="false">▲ <span class="upvote-count">710</span></button><button class="save-btn" type="button" aria-pressed="false">🔖 Save</button></div>
@@ -687,7 +691,7 @@
 <span class="tag">Autonomous Agents</span>
 <h3>Dust</h3>
 <p>Dust connects your company’s systems, documents, and tools so custom AI agents can answer with full context and take real action — with the governance enterprise IT requires.</p>
-<p class="price">Free €0 • Pro €24/seat/mo • Max €120/seat/mo</p>
+<p class="price">Free €0 • Pro €24/seat/mo (~$26) • Max €120/seat/mo (~$132)</p>
 <div class="actions"><a href="tools/dust.html">Read review →</a><a href="https://dust.tt/home/partner" target="_blank" rel="noopener">Visit Official Site ↗</a></div>
 <button class="compare-toggle" type="button" aria-pressed="false">+ Compare</button>
 <div class="card-utils"><button class="upvote-btn" type="button" aria-pressed="false">▲ <span class="upvote-count">110</span></button><button class="save-btn" type="button" aria-pressed="false">🔖 Save</button></div>
@@ -777,7 +781,7 @@
 <span class="tag">Comparison • Autonomous Agents</span>
 <h3>Dust vs Lindy AI</h3>
 <p>Governed multi-model agents on your company’s full context vs ready-made AI employees in Slack — which agent platform wins?</p>
-<p class="price">Dust Pro €24/mo • Lindy Pro $29.99/mo</p>
+<p class="price">Dust Pro €24/mo (~$26) • Lindy Pro $29.99/mo</p>
 <div class="actions"><a href="tools/dust-vs-lindy-ai.html">Read comparison →</a><a href="https://dust.tt/" target="_blank" rel="noopener">Visit Dust ↗</a></div>
 <button class="compare-toggle" type="button" aria-pressed="false">+ Compare</button>
 <div class="card-utils"><button class="upvote-btn" type="button" aria-pressed="false">▲ <span class="upvote-count">80</span></button><button class="save-btn" type="button" aria-pressed="false">🔖 Save</button></div>
