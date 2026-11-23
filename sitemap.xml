@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/sponsor.html</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -619,5 +619,53 @@
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/marketmuse.html</loc>
     <lastmod>2026-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/sintra-ai.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/oro-ai-agent.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/google-antigravity.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/factory-ai.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/grok-imagine.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/ltx-studio.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/type-ai.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/hyperwrite.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/bardeen.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/fyxer.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/google-antigravity-vs-cursor.html</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/sintra-ai-vs-lindy-ai.html</loc>
+    <lastmod>2026-11-23</lastmod>
   </url>
 </urlset>
