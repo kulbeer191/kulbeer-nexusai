@@ -203,3 +203,9 @@ body.rec-modal-open{overflow:hidden}
 .nav-links a{padding:10px 0;width:100%}
 .nav-links a.btn{width:auto;margin-top:8px}
 }
+
+/* ---- Daily #10: pricing/comparison tables scroll inside the viewport on small screens ---- */
+@media(max-width:820px){
+.table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table th,.table td{font-size:14px;padding:10px 12px}
+}
