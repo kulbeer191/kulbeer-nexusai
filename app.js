@@ -110,9 +110,11 @@
 
   // Relevance score: exact title match first, then title words, then
   // category/tag, then price (e.g. "free"), then description.
+  // "No free plan" must not match a "free" search: strip that phrase from
+  // the price before matching (same rule as hasFree() for the badge/sort).
   function score(m, q, words){
     var title = m.title.toLowerCase(), tag = m.tag.toLowerCase(),
-        price = m.price.toLowerCase(), desc = m.desc.toLowerCase();
+        price = m.price.toLowerCase().replace(/no free plan/g, ''), desc = m.desc.toLowerCase();
     var s = 0;
     if (title === q) s += 300;
     else if (title.indexOf(q) !== -1) s += 150;
