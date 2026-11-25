@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/sponsor.html</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/manus-ai.html</loc>
@@ -627,5 +627,53 @@
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/read-ai-vs-fathom.html</loc>
     <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/dify.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/voiceflow.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/pieces.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/mel.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/playground-ai.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/captions.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/squibler.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/clico.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/loom.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/coda.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/dify-vs-n8n.html</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/coda-vs-notion-ai.html</loc>
+    <lastmod>2026-11-25</lastmod>
   </url>
 </urlset>
