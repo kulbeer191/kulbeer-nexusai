@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/sponsor.html</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -811,5 +811,53 @@
   <url>
     <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/sourcery-vs-coderabbit.html</loc>
     <lastmod>2026-11-26</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/botpress.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/activepieces.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/graphite.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/qodo.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/clipdrop.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/veed.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/mistral-vibe.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/languagetool.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/dart.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/meetgeek.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/mistral-vibe-vs-chatgpt.html</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://kulbeer191.github.io/kulbeer-nexusai/tools/activepieces-vs-n8n.html</loc>
+    <lastmod>2026-11-27</lastmod>
   </url>
 </urlset>
